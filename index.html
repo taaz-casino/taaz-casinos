@@ -70,12 +70,24 @@
   </footer>
 <script>
   let tokens = localStorage.getItem("taazTokens");
-
+  let lastBonus = localStorage.getItem("lastBonusDate");
+  let today = new Date().toDateString();
+  
+<script>
   if (tokens === null) {
     tokens = 1000;
     localStorage.setItem("taazTokens", tokens);
+  } else {
+    tokens = parseInt(tokens);
   }
 
+  if (lastBonus !== today) {
+    tokens += 200;
+    localStorage.setItem("lastBonusDate", today);
+    alert("🎁 Daily Bonus! You received 200 Taaz Tokens");
+  }
+
+  localStorage.setItem("taazTokens", tokens);
   document.getElementById("tokenBalance").innerText = tokens;
 </script>
 
