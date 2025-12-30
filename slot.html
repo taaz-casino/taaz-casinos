@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Taaz Casino – Slot Machine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: radial-gradient(circle at top, #1a0000, #000);
+      color: gold;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 20px;
+    }
+    .balance {
+      color: #ff4d4d;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    .slot {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+    }
+    .reel {
+      width: 80px;
+      height: 80px;
+      margin: 0 10px;
+      border: 2px solid gold;
+      border-radius: 10px;
+      font-size: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: black;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background: linear-gradient(45deg, darkred, red);
+      color: gold;
+      border: 2px solid gold;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      box-shadow: 0 0 15px gold;
+    }
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    a {
+      display: block;
+      margin-top: 30px;
+      color: gold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎰 Slot Machine</h1>
+<div class="balance">Taaz Tokens: <span id="tokenBalance">0</span></div>
+
+<div class="slot">
+  <div class="reel" id="reel1">🍒</div>
+  <div class="reel" id="reel2">🍋</div>
+  <div class="reel" id="reel3">🍊</div>
+</div>
+
+<button onclick="spin()">SPIN (50 Tokens)</button>
+
+<div class="message" id="message"></div>
+
+<a href="index.html">⬅ Back to Casino</a>
+
+<script>
+  let tokens = parseInt(localStorage.getItem("taazTokens")) || 1000;
+  const cost = 50;
+  const symbols = ["🍒", "🍋", "🍊", "🍉", "⭐"];
+
+  function updateBalance() {
+    document.getElementById("tokenBalance").innerText = tokens;
+    localStorage.setItem("taazTokens", tokens);
+  }
+
+  updateBalance();
+
+  function spin() {
+    if (tokens < cost) {
+      document.getElementById("message").innerText = "❌ Not enough tokens!";
+      return;
+    }
+
+    tokens -= cost;
+
+    const r1 = symbols[Math.floor(Math.random() * symbols.length)];
+    const r2 = symbols[Math.floor(Math.random() * symbols.length)];
+    const r3 = symbols[Math.floor(Math.random() * symbols.length)];
+
+    document.getElementById("reel1").innerText = r1;
+    document.getElementById("reel2").innerText = r2;
+    document.getElementById("reel3").innerText = r3;
+
+    if (r1 === r2 && r2 === r3) {
+      tokens += 300;
+      document.getElementById("message").innerText = "🎉 JACKPOT! You won 300 tokens!";
+    } else if (r1 === r2 || r2 === r3 || r1 === r3) {
+      tokens += 100;
+      document.getElementById("message").innerText = "✨ Nice! You won 100 tokens!";
+    } else {
+      document.getElementById("message").innerText = "😕 Try again!";
+    }
+
+    updateBalance();
+  }
+</script>
+
+</body>
+</html>
