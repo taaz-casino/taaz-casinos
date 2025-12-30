@@ -56,7 +56,7 @@
 
   <header>
     <h1>🎰 TAAZ CASINO 🎰</h1>
-    <div class="balance">Taaz Tokens: 1000</div>
+    <div class="balance">Taaz Tokens: <span id="tokenBalance">0</span></div>
   </header>
 
   <div class="buttons">
@@ -67,6 +67,16 @@
   <footer>
     <p>Entertainment only • No real money involved • 18+</p>
   </footer>
+<script>
+  let tokens = localStorage.getItem("taazTokens");
+
+  if (tokens === null) {
+    tokens = 1000;
+    localStorage.setItem("taazTokens", tokens);
+  }
+
+  document.getElementById("tokenBalance").innerText = tokens;
+</script>
 
 </body>
 </html>
