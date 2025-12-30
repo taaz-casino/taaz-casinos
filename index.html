@@ -89,6 +89,14 @@
 
   localStorage.setItem("taazTokens", tokens);
   document.getElementById("tokenBalance").innerText = tokens;
+  let tokens = localStorage.getItem("taazTokens");
+
+  if (tokens === null) {
+    tokens = 1000;
+    localStorage.setItem("taazTokens", tokens);
+  }
+
+  document.getElementById("tokenBalance").innerText = tokens;
 </script>
 
 </body>
