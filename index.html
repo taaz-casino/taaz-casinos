@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,20 +32,20 @@
       display: block;
       margin: 20px auto;
       padding: 15px;
-      width: 250px;
+      width: 260px;
       background: linear-gradient(45deg, darkred, red);
       color: gold;
       font-size: 18px;
       border: 2px solid gold;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       text-decoration: none;
     }
     .btn:hover {
-      box-shadow: 0 0 15px gold;
+      box-shadow: 0 0 18px gold;
     }
     footer {
-      margin-top: 60px;
+      margin-top: 70px;
       font-size: 12px;
       color: #ccc;
     }
@@ -56,48 +55,9 @@
 
   <header>
     <h1>🎰 TAAZ CASINO 🎰</h1>
-    <div class="balance">Taaz Tokens: <span id="tokenBalance">0</span></div>
+    <div class="balance">
+      Taaz Tokens: <span id="tokenBalance">0</span>
+    </div>
   </header>
 
-  <div class="buttons">
-    <a class="btn" href="slot.html">🎰 Slot Machine</a>
-    <a class="btn" href="roulette.html">🎯 Roulette</a>
-    
-  </div>
-
-  <footer>
-    <p>Entertainment only • No real money involved • 18+</p>
-  </footer>
-<script>
-  let tokens = localStorage.getItem("taazTokens");
-  let lastBonus = localStorage.getItem("lastBonusDate");
-  let today = new Date().toDateString();
-  
-<script>
-  if (tokens === null) {
-    tokens = 1000;
-    localStorage.setItem("taazTokens", tokens);
-  } else {
-    tokens = parseInt(tokens);
-  }
-
-  if (lastBonus !== today) {
-    tokens += 200;
-    localStorage.setItem("lastBonusDate", today);
-    alert("🎁 Daily Bonus! You received 200 Taaz Tokens");
-  }
-
-  localStorage.setItem("taazTokens", tokens);
-  document.getElementById("tokenBalance").innerText = tokens;
-  let tokens = localStorage.getItem("taazTokens");
-
-  if (tokens === null) {
-    tokens = 1000;
-    localStorage.setItem("taazTokens", tokens);
-  }
-
-  document.getElementById("tokenBalance").innerText = tokens;
-</script>
-
-</body>
-</html>
+  <div class="
